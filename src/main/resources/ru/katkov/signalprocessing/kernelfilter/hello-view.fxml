@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane style="-fx-background-color: #b3dbda;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.katkov.signalprocessing.kernelfilter.MainWindowController">
+    <children>
+        <ImageView fx:id="processedImage" fitHeight="500.0" fitWidth="600.0" layoutX="1050.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true" />
+        <ImageView fx:id="sourceImage" fitHeight="500.0" fitWidth="600.0" layoutX="50.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true" />
+        <Button layoutX="686.0" layoutY="100.0" mnemonicParsing="false" onAction="#getImageFromFile" prefHeight="25.0" prefWidth="83.0" text="Choose file" />
+        <Button layoutX="893.0" layoutY="100.0" mnemonicParsing="false" onAction="#saveImage" text="Save image" />
+        <GridPane fx:id="matrixGrid" hgap="20.0" layoutX="669.0" layoutY="239.0" prefHeight="190.0" prefWidth="313.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+            <children>
+                <Spinner editable="true">
+                    <valueFactory>
+                        <SpinnerValueFactory.IntegerSpinnerValueFactory initialValue="1" max="100" min="-10" />
+                    </valueFactory>
+                </Spinner>
+                <Spinner editable="true" GridPane.columnIndex="1">
+                    <valueFactory>
+                        <SpinnerValueFactory.IntegerSpinnerValueFactory initialValue="1" max="100" min="-10" />
+                    </valueFactory>
+                </Spinner>
+                <Spinner editable="true" GridPane.columnIndex="2">
+                    <valueFactory>
+                        <SpinnerValueFactory.IntegerSpinnerValueFactory initialValue="1" max="100" min="-10" />
+                    </valueFactory>
+                </Spinner>
+                <Spinner editable="true" GridPane.rowIndex="1">
+                    <valueFactory>
+                        <SpinnerValueFactory.IntegerSpinnerValueFactory initialValue="1" max="100" min="-10" />
+                    </valueFactory>
+                </Spinner>
+                <Spinner editable="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                    <valueFactory>
+                        <SpinnerValueFactory.IntegerSpinnerValueFactory initialValue="1" max="100" min="-10" />
+                    </valueFactory>
+                </Spinner>
+                <Spinner editable="true" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                    <valueFactory>
+                        <SpinnerValueFactory.IntegerSpinnerValueFactory initialValue="1" max="100" min="-10" />
+                    </valueFactory>
+                </Spinner>
+                <Spinner editable="true" GridPane.rowIndex="2">
+                    <valueFactory>
+                        <SpinnerValueFactory.IntegerSpinnerValueFactory initialValue="1" max="100" min="-10" />
+                    </valueFactory>
+                </Spinner>
+                <Spinner editable="true" prefWidth="88.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                    <valueFactory>
+                        <SpinnerValueFactory.IntegerSpinnerValueFactory initialValue="1" max="100" min="-10" />
+                    </valueFactory>
+                </Spinner>
+                <Spinner editable="true" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                    <valueFactory>
+                        <SpinnerValueFactory.IntegerSpinnerValueFactory initialValue="1" max="100" min="-10" />
+                    </valueFactory>
+                </Spinner>
+            </children>
+            <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            </padding>
+        </GridPane>
+        <Button layoutX="691.0" layoutY="526.0" mnemonicParsing="false" onAction="#apply" prefHeight="43.0" prefWidth="283.0" text="Apply" />
+        <Label layoutX="686.0" layoutY="221.0" prefHeight="36.0" prefWidth="195.0" text="Choose your own filter:" />
+        <Spinner fx:id="weightSpinner" editable="true" layoutX="819.0" layoutY="429.0">
+            <valueFactory>
+                <SpinnerValueFactory.IntegerSpinnerValueFactory initialValue="1" max="1000" min="1" />
+            </valueFactory>
+        </Spinner>
+        <Spinner fx:id="offsetSpinner" editable="true" layoutX="819.0" layoutY="473.0">
+            <valueFactory>
+                <SpinnerValueFactory.IntegerSpinnerValueFactory initialValue="0" max="1000" min="-1000" />
+            </valueFactory>
+        </Spinner>
+        <Label layoutX="691.0" layoutY="433.0" prefHeight="25.0" prefWidth="78.0" text="Weight" />
+        <Label layoutX="691.0" layoutY="477.0" prefHeight="25.0" prefWidth="87.0" text="Offset" />
+        <Button layoutX="686.0" layoutY="140.0" mnemonicParsing="false" onAction="#applyMedianFilter" text="Median filter" />
+        <HBox alignment="CENTER_LEFT" layoutX="7.0" layoutY="627.0" prefHeight="100.0" prefWidth="832.0" spacing="20.0">
+            <children>
+                <Button mnemonicParsing="false" onAction="#H1" prefHeight="61.0" prefWidth="64.0" text=" 1  1  1&#10; 1  1  1&#10; 1  1  1" />
+                <Button mnemonicParsing="false" onAction="#H2" prefHeight="61.0" prefWidth="64.0" text=" 1  1  1&#10; 1  2  1&#10; 1  1  1" />
+                <Button mnemonicParsing="false" onAction="#H3" prefHeight="61.0" prefWidth="64.0" text=" 1  2  1&#10; 2  4  2&#10; 1  2  1" />
+                <Button mnemonicParsing="false" onAction="#H4" prefHeight="61.0" prefWidth="64.0" text=" 0 -1  0&#10;-1 -5 -1&#10; 0 -1  0" />
+                <Button mnemonicParsing="false" onAction="#H5" prefHeight="61.0" prefWidth="64.0" text="-1 -1 -1&#10;-1 9 -1&#10;-1 -1 -1" />
+                <Button mnemonicParsing="false" onAction="#H6" prefHeight="61.0" prefWidth="64.0" text=" 1 -2  1&#10;-2  5 -2&#10; 1 -2  1" />
+
+            </children>
+            <opaqueInsets>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            </opaqueInsets>
+            <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            </padding>
+        </HBox>
+      <Button layoutX="778.0" layoutY="140.0" mnemonicParsing="false" onAction="#negative" text="Negative" />
+    </children>
+</Pane>
